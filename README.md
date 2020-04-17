@@ -34,7 +34,7 @@ Query all mental statuses or one status by id.
 * MyStatusGraphQL.Database -namespace contains Db-context
 * MyStatusGraphQL.Controllers -namespace contains the controller
 * MyStatusGraphQL.Entities -namespace contains the entity
-* DataGenerator contains the stub data creation for the project
+* DataGenerator.cs contains the stub data creation for the project
 
 
 ### Limitations
