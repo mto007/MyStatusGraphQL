@@ -35,13 +35,24 @@ namespace MyStatusGraphQL
                ServiceLifetime.Scoped,
                ServiceLifetime.Scoped);
             services.AddSingleton<GraphQLQuery>();
-            
+
             services.AddSingleton<MentalStatus>();
             services.AddSingleton<MentalStatusType>();
             services.AddScoped<MentalStatusQuery>();
             services.AddScoped<MentalStatusMutation>();
             services.AddScoped<ISchema, MentalStatusSchema>();
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:8080")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod()
+                                            .AllowCredentials();
+                    });
+            });
 
             services.AddControllers();
 
@@ -60,6 +71,8 @@ namespace MyStatusGraphQL
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
